@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@parcel/transformer-worklet": "^2.0.1",
+    "parcel": "^2.0.1",
+    "parcel-plugin-static-files-copy": "^2.6.0"
+  },
+  "scripts": {
+    "build": "parcel src/index.html",
+    "postbuild": "cp -r static/* dist/"
+  }
+}
