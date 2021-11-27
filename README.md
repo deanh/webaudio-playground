@@ -19,6 +19,7 @@ Some simple WebAudio building blocks and a web app to experiement and (kind of) 
 - Connect gain nodes and gain control to the generated nodes for playback
 ### Timing / tempo related
 - Create a Tempo object wrapped around Metro to provide a more traditional musical interface (BPM, time signature)
-### Architecture related
+### Architecture / app related
 - Use a worker to schedule from a different thread
 - Evaluate what needs to be async
+- Do something better with static asset management
