@@ -1,5 +1,5 @@
 import {NodeGenerator} from './nodeGenerator';
-class Noise implements NodeGenerator {
+export class Noise implements NodeGenerator {
     stopTime?: number;
 
     constructor(stopTime?: number) {
@@ -23,5 +23,3 @@ class Noise implements NodeGenerator {
         return noise;
     }
 }
-
-export = Noise;

@@ -1,6 +1,6 @@
 import {NodeGenerator} from './nodeGenerator';
 
-class Metro {
+export class Metro {
     ctx: AudioContext;
     interval: number | Array<number>;
     nextBeat: number;
@@ -67,5 +67,3 @@ class Metro {
         this.playEvery.push(nodeGen);
     }
 }
-
-export = Metro;

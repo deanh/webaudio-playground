@@ -1,6 +1,6 @@
-import Metro, {} from "./metro";
-import Simple from "./simple";
-import Noise from "./noise"
+import {Metro} from "./metro";
+import {Simple} from "./simple";
+import {Noise} from "./noise"
 
 let aCtx = new AudioContext()
 let m1 = new Metro(aCtx, [500, 750, 500, 500, 750]);

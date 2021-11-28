@@ -1,6 +1,6 @@
 import {NodeGenerator} from './nodeGenerator';
 
-class Simple implements NodeGenerator {
+export class Simple implements NodeGenerator {
     audioBuffer: AudioBuffer;
     filepath: string;
     ctx: AudioContext;
@@ -31,5 +31,3 @@ class Simple implements NodeGenerator {
         return sampleSource;
     }
 }
-
-export = Simple;
