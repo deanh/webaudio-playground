@@ -5,7 +5,7 @@ import Noise from "./noise"
 let aCtx = new AudioContext()
 let m1 = new Metro(aCtx, [500, 750, 500, 500, 750]);
 
-let sample = new Simple("./rw_auto_10-011.mp3", aCtx, 800);
+let sample = new Simple("./rw_auto_10-011.mp3", aCtx, {stopTime: 800});
 
 sample.getFile().then((s: Simple) => {
     m1.addEvery(s);

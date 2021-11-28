@@ -1,11 +1,12 @@
-class Noise {
+import {NodeGenerator} from './nodeGenerator';
+class Noise implements NodeGenerator {
     stopTime?: number;
 
     constructor(stopTime?: number) {
         this.stopTime = stopTime;
     }
 
-    gen(ctx: AudioContext): AudioBufferSourceNode {
+    async gen(ctx: AudioContext): Promise<AudioBufferSourceNode> {
         const bufferSize = ctx.sampleRate;
         const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);    
     
@@ -18,8 +19,6 @@ class Noise {
 
         let noise = ctx.createBufferSource();
         noise.buffer = buffer;
-    
-        noise.connect(ctx.destination);
 
         return noise;
     }

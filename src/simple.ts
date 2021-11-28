@@ -1,13 +1,17 @@
-class Simple {
+import {NodeGenerator} from './nodeGenerator';
+
+class Simple implements NodeGenerator {
     audioBuffer: AudioBuffer;
     filepath: string;
     ctx: AudioContext;
     stopTime?: number;
+    playbackRate?: number;
 
-    constructor(filepath: string, ctx: AudioContext, stopTime?: number) {
-        this.filepath = filepath;
-        this.ctx      = ctx;
-        this.stopTime = stopTime;
+    constructor(filepath: string, ctx: AudioContext, {playbackRate, stopTime}: {playbackRate?: number, stopTime?: number}) {
+        this.filepath     = filepath;
+        this.ctx          = ctx;
+        this.stopTime     = stopTime;
+        this.playbackRate = playbackRate;
     }
 
     async getFile(): Promise<Simple> {
@@ -19,10 +23,10 @@ class Simple {
         return this;
     }
 
-    gen(ctx: AudioContext = this.ctx): AudioScheduledSourceNode {
+    async gen(ctx: AudioContext = this.ctx): Promise<AudioScheduledSourceNode> {
         const sampleSource = ctx.createBufferSource();
-        sampleSource.buffer = this.audioBuffer;  
-        sampleSource.connect(ctx.destination);
+        sampleSource.buffer = this.audioBuffer;
+        sampleSource.playbackRate.value - this.playbackRate || 1.0;
 
         return sampleSource;
     }

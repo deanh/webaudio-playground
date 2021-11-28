@@ -1,7 +1,4 @@
-interface NodeGenerator {
-    gen: (ctx: AudioContext) => AudioScheduledSourceNode;
-    stopTime?: number;
-}
+import {NodeGenerator} from './nodeGenerator';
 
 class Metro {
     ctx: AudioContext;
@@ -40,7 +37,7 @@ class Metro {
         return retInterval;
     }
 
-    schedule() { 
+    async schedule() { 
         // assume: currentTime < this.nextBeat!
         const currentTime = Math.floor(this.ctx.currentTime * 1000); // ms
         const interval    = this.getNextInterval(currentTime);
@@ -49,9 +46,10 @@ class Metro {
         this.nextBeat = this.nextBeat + interval;
 
         for (let nodeGen of this.playEvery.concat(this.playNext)) {
-            let node = nodeGen.gen(this.ctx);
+            let node = await nodeGen.gen(this.ctx);
             let stopTime = nodeGen.stopTime || 0.1 ;
 
+            node.connect(this.ctx.destination);
             node.start(this.nextBeat / 1000.0);
             node.stop((this.nextBeat / 1000.0) + stopTime);
         }
