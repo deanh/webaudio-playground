@@ -26,7 +26,7 @@ export class Simple implements NodeGenerator {
     async gen(ctx: AudioContext = this.ctx): Promise<AudioScheduledSourceNode> {
         const sampleSource = ctx.createBufferSource();
         sampleSource.buffer = this.audioBuffer;
-        sampleSource.playbackRate.value - this.playbackRate || 1.0;
+        sampleSource.playbackRate.value = this.playbackRate || 1.0;
 
         return sampleSource;
     }
